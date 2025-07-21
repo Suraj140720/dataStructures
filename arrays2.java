@@ -3,35 +3,56 @@ import java.util.Scanner;
 public class arrays2 {
     public static void main(String[] args)
     {
-        ////Maximum Sum in Sub Array
-        // Scanner sc = new Scanner(System.in);
-        // int n = sc.nextInt();
-        // int[] arr = new int[n];
-        // for(int i = 0; i<n; i++)
-        // {
-        //     arr[i] = sc.nextInt();
-        // }
-        // maxSubArray(arr);
+        //Sort an array of 0,1,2(By Dutch Flag Algorithm)
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0; i<n; i++)
+        {
+            arr[i] = sc.nextInt();
+        } 
+        System.err.println(maxProfit(arr));
+    }
 
+    //Best Time to Buy and Sell Stock
+    public static int maxProfit(int[] prices) {
+        int mini = prices[0];
+        int profit = 0;
+        int n = prices.length;
+        for(int i =0; i<n; i++)
+        {
+            int sp = prices[i] - mini;
+            profit = Math.max(sp, profit);
+            mini = Math.min(mini, prices[i]);
+        }
+        return profit;
+    }
 
-        //Next Permutation
-        // Scanner sc = new Scanner(System.in);
-        // int n = sc.nextInt();
-        // int[] arr = new int[n];
-        // for(int i = 0; i<n; i++)
-        // {
-        //     arr[i] = sc.nextInt();
-        // }
-        // nextPermutation(arr);
-        // for(int i = 0; i<n; i++)
-        // {
-        //     System.out.print(arr[i] + "->");
-        // }
+    //Sort an array of 0,1,2(By Dutch Flag Algorithm)
+    public static void sortArrayOf012(int[] arr)
+    {
+        int low = 0; int mid = 0; int high = arr.length-1;
+        while(mid<=high)
+        {
+            if(arr[mid] == 0)
+            {
+                swap(arr, low, mid);
+                low++;
+                mid++;
+            }else if(arr[mid] == 1)
+            {
+                mid++;
+            }else
+            {
+                swap(arr, mid, high);
+                high--;
+            }
+        }
     }
 
     //Maximum Sum in Sub Array
     //[3.Optimised Solution(Kadans Algorithm)]
-    public int maxSubArrayOptimised(int[] nums) {
+    public static int maxSubArrayOptimised(int[] nums) {
         int sum = Integer.MIN_VALUE;
         int currSum = 0;
         for(int i =0; i<nums.length; i++)
