@@ -143,4 +143,54 @@ public class stack3 {
         }
         return false;
     }
+
+
+    public int maxArea(int[] arr)
+    {
+        int maxArea = 0;
+        Stack<Integer> s = new Stack<>();
+        int n = arr.length;
+        int leftSmall[] = new int[n];
+        int rightSmall[] = new int[n];
+
+        // left small
+        for(int i = 0; i<n; i++){
+            while(!s.isEmpty() && arr[s.peek()] >= arr[i]){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                leftSmall[i] = 0;
+            }else{
+                leftSmall[i] = s.peek() + 1;
+            }
+            s.push(i);
+        }
+
+        // clear stack
+        while(!s.isEmpty()){
+            s.pop();
+        }
+
+        // right small
+        for(int i = n-1; i>=0; i--){
+            while(!s.isEmpty() && arr[s.peek()] >= arr[i]){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                rightSmall[i] = n-1;
+            }else{
+                rightSmall[i] = s.peek() - 1;
+            }
+            s.push(i);
+        }
+
+        // calculate area
+        for(int i = 0; i<n; i++){
+            int height = arr[i];
+            int width = rightSmall[i] - leftSmall[i] + 1;
+            int area = height * width;
+            maxArea = Math.max(area, maxArea);
+        }
+        return maxArea;
+    }
 }

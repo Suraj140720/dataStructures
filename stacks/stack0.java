@@ -4,12 +4,14 @@ import java.util.Stack;
 public class stack0 {
     public static void main(String[] args){
 
-        int[] stocks = {100,80,60,70,60,75,85,100};
-        int[] span = new int[stocks.length];
+        // int[] stocks = {100,80,60,70,60,75,85,100};
+        // int[] span = new int[stocks.length];
 
+        int[] arr = {2,5,5,6,5,3};
         stack3 s = new stack3();
-        boolean b = s.isDuplicate("((a+b)+(b+c))");
-        System.out.println(b);
+        System.out.println(s.maxArea(arr));
+        // boolean b = s.isDuplicate("((a+b)+(b+c))");
+        // System.out.println(b);
         // stack3 s = new stack3();
         // System.out.println(s.reverseString("Suraj"));
 
